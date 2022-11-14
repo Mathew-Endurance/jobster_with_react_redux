@@ -96,3 +96,8 @@ return (
 - create the routes
 
 <!-- REGISTER/LOGIN -->
+
+- create FormRow.js in components
+- setup import/export in index.js
+- setup one for name, email and password
+- pass the prop in the FormRow component in register.js
