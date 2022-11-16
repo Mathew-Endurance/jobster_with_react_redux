@@ -101,3 +101,63 @@ return (
 - setup import/export in index.js
 - setup one for name, email and password
 - pass the prop in the FormRow component in register.js
+
+<!-- TOGGLE BETWEEN FORM -->
+
+```js
+const toggleMember = () => {
+  setValues({ ...values, isMember: !values.isMember });
+};
+
+return (
+  <Wrapper>
+    {/* control h3 */}
+
+    <h3>{values.isMember ? "Login" : "Register"}</h3>
+
+    {/* toggle name */}
+
+    {!values.isMember && (
+      <FormRow
+        type="text"
+        name="name"
+        value={values.name}
+        handleChange={handleChange}
+      />
+    )}
+
+    {/* right after submit btn */}
+    {/* toggle button */}
+
+    <p>
+      {values.isMember ? "Not a member yet?" : "Already a member?"}
+
+      <button type="button" onClick={toggleMember} className="member-btn">
+        {values.isMember ? "Register" : "Login"}
+      </button>
+    </p>
+  </Wrapper>
+);
+```
+
+<!-- Handle Change and Empty Values -->
+
+Register.js
+
+```js
+const handleChange = (e) => {
+  const name = e.target.name;
+  const value = e.target.value;
+  console.log(`${name}:${value}`);
+  setValues({ ...values, [name]: value });
+};
+
+const onSubmit = (e) => {
+  e.preventDefault();
+  const { name, email, password, isMember } = values;
+  if (!email || !password || (!isMember && !name)) {
+    consol.log("Please Fill Out All Fields");
+    return;
+  }
+};
+```
